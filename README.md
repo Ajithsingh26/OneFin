@@ -123,3 +123,143 @@ This endpoint retrieves a list of movies, optionally paginated.
 }
 
 ```
+
+### Create Collection
+
+**POST** `/collections/`
+
+This endpoint allows a user to create a new collection of movies. The collection can optionally include a list of movies.
+
+#### Request Body:
+
+```json
+{
+  "title": "My Favorite Movies",
+  "description": "A collection of my all-time favorite movies.",
+  "movies": [
+    {
+      "uuid": "movie_uuid_1",
+      "title": "Movie Title",
+      "description": "Movie Description",
+      "genres": "Action, Adventure"
+    },
+    {
+      "uuid": "movie_uuid_2",
+      "title": "Another Movie",
+      "description": "Another Description",
+      "genres": "Drama, Thriller"
+    }
+  ]
+}
+```
+
+### List Collections
+
+**GET** `/collections/`
+
+This endpoint retrieves a list of collections belonging to the authenticated user.
+
+#### Request Parameters:
+
+- `page` (optional): The page number to fetch. Defaults to 1 if not provided.
+
+#### Response:
+
+```json
+{
+  "is_success": true,
+  "data": {
+    "collections": [
+      {
+        "uuid": "collection_uuid_1",
+        "title": "My Favorite Movies",
+        "description": "A collection of my all-time favorite movies."
+      },
+      {
+        "uuid": "collection_uuid_2",
+        "title": "Action Movies",
+        "description": "A collection of the best action movies."
+      }
+    ],
+    "favourite_genres": "Action, Adventure, Drama"
+  }
+}
+```
+
+### Update Collection
+
+**PUT** `/collections/{uuid}/`
+
+This endpoint allows a user to update an existing movie collection.
+
+#### Request:
+
+```json
+{
+  "title": "Updated Movie Collection",
+  "description": "Updated description of the collection.",
+  "movies": [
+    {
+      "uuid": "movie_uuid_3",
+      "title": "New Movie Title",
+      "description": "New Movie Description",
+      "genres": "Comedy, Drama"
+    }
+  ]
+}
+```
+
+### Delete Collection
+
+**DELETE** `/collections/{uuid}/`
+
+This endpoint allows a user to delete an existing movie collection.
+
+#### Request:
+
+No request body is required.
+
+#### Response:
+
+```json
+{
+  "message": "Collection with UUID {collection_uuid} has been deleted."
+}
+```
+
+### Get Request Counter
+
+**GET** `/request-count/`
+
+This endpoint returns the total number of requests served by the server so far.
+
+#### Request:
+
+No request body is required.
+
+#### Response:
+
+```json
+{
+  "requests": 1500
+}
+```
+
+### Reset Request Counter
+
+**POST** `/request-count/reset/`
+
+This endpoint resets the request counter back to 0.
+
+#### Request:
+
+No request body is required.
+
+#### Response:
+
+```json
+{
+  "message": "Request count reset successfully"
+}
+```
+
