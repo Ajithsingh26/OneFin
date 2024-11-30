@@ -88,7 +88,7 @@ This endpoint allows a user to register a new account.
   "username": "testuser",
   "password": "Password123!"
 }
-
+```
 ### Movie List
 
 **GET** `/movies/`
@@ -122,4 +122,4 @@ This endpoint retrieves a list of movies, optionally paginated.
   ]
 }
 
-
+```
