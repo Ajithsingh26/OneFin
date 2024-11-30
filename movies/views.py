@@ -7,7 +7,7 @@ from .models import Collection
 from .serializers import RegisterSerializer, CollectionSerializer, MovieSerializer
 from django.conf import settings
 from django.core.cache import cache
-from .utils import MovieAPIClient
+from .service import MovieAPIClient
 from collections import Counter
 import redis
 
