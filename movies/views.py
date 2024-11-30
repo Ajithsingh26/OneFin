@@ -9,6 +9,24 @@ from django.conf import settings
 from django.core.cache import cache
 from .utils import MovieAPIClient
 from collections import Counter
+import redis
+
+class RequestCountView(APIView):
+    def get(self, request):
+        redis_client = redis.StrictRedis.from_url(settings.CACHES['default']['LOCATION'])
+        request_count = redis_client.get('request_count')
+        
+        if not request_count:
+            request_count = 0
+        
+        return Response({'requests': int(request_count)}, status=status.HTTP_200_OK)
+
+class ResetRequestCountView(APIView):
+    def post(self, request):
+        redis_client = redis.StrictRedis.from_url(settings.CACHES['default']['LOCATION'])
+        redis_client.set('request_count', 0)
+        
+        return Response({'message': 'Request count reset successfully'}, status=status.HTTP_200_OK)
 
 
 class RegisterView(APIView):
