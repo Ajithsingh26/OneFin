@@ -6,7 +6,7 @@ This is a Django-based API that manages movie collections, where users can regis
 
 - Python 3.x installed
 - Redis server (for caching and request counting)
-- PostgreSQL database server (for Django's default database)
+- SQLite database server (for Django's default database)
 - Python virtual environment (optional but recommended)
 
 ## Installation
